@@ -1,7 +1,7 @@
 # challenges-yashkolluru
 challenges-yashkolluru created by GitHub Classroom
 
-![](https://drive.google.com/file/d/1m7slZk5LJ9pjRfJst825QcXcPOPWAoCv/view?usp=sharing)
+![](https://github.com/vyomasystems-lab/challenges-yashkolluru/blob/master/Screenshot%20(86).png)
 ## Verification Environment
 
 The verification environment is setup using [Vyoma's UpTickPro](https://vyomasystems.com) provided for the hackathon. The [CoCoTb](https://www.cocotb.org/) based Python test is developed as explained.
