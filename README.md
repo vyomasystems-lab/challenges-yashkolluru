@@ -106,8 +106,44 @@ Updating the design and re-running the test makes the test. The updated code is 
 imported random library and assigned random function to selectlines. Made two tests one is **test_mux(dut)** for inp0 to inp15 and another is **test_mux1(dut)** for inp16 to inp30.
 
 # Level1_design2
-Here the verification is done to MUX circuit to identify bugs. 
-The test drives inputs to the Design under test (mux module here) which takes 30 2-bit inputs *inp0 to inp30, 5-bit select lines *sel* and 2-bit otput *out*.
+Here the verification is done to sequence detector circuit (which detects 1011 sequence also repetition is allowed) to identify bugs. 
+The test drives inputs to the Design under test (seq_detect_1011 module here) which takes **clk, rst, inp_bit** as inputs and gives **seq_seen** as output.
 
-The values are assigned to the input port using 
+The values are assigned to the input ports clk and rst using
+```
+clock = Clock(dut.clk, 10, units="us")  # Create a 10us period clock on port clk
+cocotb.start_soon(clock.start())        # Start the clock
+
+# reset
+dut.reset.value = 1
+await FallingEdge(dut.clk)  
+dut.reset.value = 0
+await FallingEdge(dut.clk)
+```
+the values are assigned to inp_bit at regular intervals according to sequence which is considered  like for example sequence "10"
+```
+dut.inp_bit.value=1
+await FallingEdge(dut.clk)
+dut._log.info(f'State={int(dut.current_state):02} Expected_state={1} Out={int(dut.seq_seen.value):02}')
+dut.inp_bit.value=0
+await FallingEdge(dut.clk)
+````
+
+The assert statement is used for comparing the Sequenence detector's outut and state to the expected value and state respectively
+The following errors is seen:
+
+i) for sequence 1011011
+```
+ assert dut.seq_seen==1,"Sequence detected by logic by not by DUT: Model_out={out} model_state={S} Expected_out={out1} Expected_state={S1}".format(
+ AssertionError: Sequence detected by logic but not by DUT: Model_out=0 model_state=0 Expected_out=1 Expected_state=4
+```
+ii) for sequence 11011
+```
+assert dut.seq_seen==1,"Sequence detected by logic but not by DUT: Model_out={out} model_state={S} Expected_out={out1} Expected_state={S1}".format(
+AssertionError: Sequence detected by logic by not by DUT: Model_out=0 model_state=0 Expected_out=1 Expected_state=4
+```
+iii) for sequence 101011
+```
+assert dut.seq_seen==1,"Sequence detected by logic but not by DUT: Model_out={out} model_state={S} Expected_out={out1} Expected_state={S1}".format(
+AssertionError: Sequence detected by logic by not by DUT: Model_out=0 model_state=0 Expected_out=1 Expected_state=4
 ```
