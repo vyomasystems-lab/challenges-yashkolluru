@@ -203,7 +203,7 @@ Updating the design and re-running the test makes the test. The updated code is 
 ## Verification Strategy
 Imported Path library from **pathlib**, Clock library from **cocotb.clock** and RisingEdge, FallingEdge libraries from **cocotb.triggers**. After this a clock signal was generated of period 10us. Then according the desired sequence inuts are assigend to inp_bit in regular intervals and performed all other required tests. 
 
-#Level2_design (Bitmanipulation Co-Processor Verification)
+# Level2_design (Bitmanipulation Co-Processor Verification)
 Here the verification is done to Bitmanipulation Co-Processor circuit to identify bugs in it. The test drives inputs to the Design under test (mkbitmanip module here) which takes **mav_putvalue_instr, mav_putvalue_src1, mav_putvalue_src2, mav_putvalue_src3** as 32-bit inputs and gives **mav_putvalue** as 33-bit output where LSB is for validation.
 
 The values are assigned to the input ports *mav_putvalue_src1, mav_putvalue_src2, mav_putvalue_src* using
