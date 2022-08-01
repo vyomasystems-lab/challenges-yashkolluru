@@ -194,3 +194,12 @@ SEQ_101:
         else
           next_state = IDLE;   ====> BUG
 ```
+
+## Design Fix
+Updating the design and re-running the test makes the test. The updated code is commited as **seq_detect_modified.v** file with no bugs.
+
+![](https://github.com/vyomasystems-lab/challenges-yashkolluru/blob/master/Screenshot%20(89).png)
+
+## Verification Strategy
+Imported Path library from **pathlib**, Clock library from **cocotb.clock** and RisingEdge, FallingEdge libraries from **cocotb.triggers**. After this a clock signal was generated of period 10us. Then according the desired sequence inuts are assigend to inp_bit in regular intervals and performed all other required tests. 
+
