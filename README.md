@@ -98,5 +98,5 @@ Here we need to insert a logic above line ``default: out = 0;``that is ``5'b1111
 ## Design Fix
 Updating the design and re-running the test makes the test. The updated code is commited as **mux_rectified.v** file with no bugs.
 
-![](https://github.com/vyomasystems-lab/challenges-yashkolluru/blob/master/Screenshot%20(86).png)
+![](https://github.com/vyomasystems-lab/challenges-yashkolluru/blob/master/Screenshot%20(88).png)
 
