@@ -247,3 +247,38 @@ dut.reset.value = 0
 await FallingEdge(dut.clk)
 ```
 The value assigned to remaining input ports are
+ ```
+ dut.degrees.value=deg
+ dut.actv.value=A
+```
+
+The assert statement is used for comparing the Trigonometric Function Implementer Circuit's output to expected output. So, by executing the **top_test.py**
+The following errors is seen:
+```
+assert out==1011111111101111100000111000101110001100100000010001110000010111,"something went wrong  Model_out={out} Expected_out={EXP}".format(
+      AssertionError: something went wrong: Model_out=0011111111101111100000111000101110001100100000010001110000010111,   Expected_out=1011111111101111100000111000101110001100100000010001110000010111
+ ```
+ 
+## Test scenario
+- Test inputs: deg=280, A=0
+- Expected output:1011111111101111100000111000101110001100100000010001110000010111
+- Observed output in dut: 0011111111101111100000111000101110001100100000010001110000010111
+
+## Design Bug
+Based on the above test input and analysing the design, we see the following
+```
+///////////// If input value is between 181 and 360//////////
+ 
+   if (degrees > `INPUT_WIDTH'd180 && (degrees < `INPUT_WIDTH'd360 || degrees == `INPUT_WIDTH'd360))
+	begin
+	degrees_tmp1 <= degrees - `INPUT_WIDTH'd180;
+ 
+	begin
+	  if(degrees_tmp1 >`INPUT_WIDTH'd90)
+	    begin
+	      quad <= 2'b00;    ==========================================>>BUG
+	      degrees_tmp2 <= `INPUT_WIDTH'd180 - degrees_tmp1;
+	      end
+```
+## Design Fix
+Updating the design and re-running the test makes the test. The updated code is commited as **seq_detect_modified.v** file with no bugs.
