@@ -54,12 +54,12 @@ In=[0,1,2,3,0,1,2,3,0,1,2,3,0,1,2,3,0,1,2,3,0,1,2,3,0,1,2,3,0,1,2]
 The assert statement is used for comparing the MUX's outut to the expected value
 
 The following errors is seen:
-i)when S=30 was assigned by random function in **test_mux1(dut)** in **test_mux.py** file
+i) when S=30 was assigned by random function in **test_mux1(dut)** in **test_mux.py** file
 ```
  assert dut.out.value == In[S], "Mux result is incorrect:model_out={Out}, expected output={EXP} at sel={SEL}".format(
  AssertionError: Mux result is incorrect:model_out=0, expected output=2 at sel=30
 ```
-ii)when S=13 was assigned by random function in **test_mux(dut)** in **test_mux.py** file
+ii) when S=13 was assigned by random function in **test_mux(dut)** in **test_mux.py** file
 ```
  assert dut.out.value == In[S], "Mux result is incorrect:model_out={Out}, expected output={EXP} at sel={SEL}".format(
   AssertionError: Mux result is incorrect:model_out=0, expected output=1 at sel=13
@@ -213,3 +213,20 @@ The values are assigned to the input ports *mav_putvalue_src1, mav_putvalue_src2
  mav_putvalue_src3 = 0x00000000
  ```
 The values are assigned to *mav_putvalue_instr* are using the 32-bit instruction values, used in if else statements of **model_mkbitmanip.py** file
+
+The assert statement is used for comparing the Bitmanipulator Co-Processor's outut to the expected value which is got through **model_mkbitmanip.py** file
+The following errors is seen:
+
+for instruction input (mav_putvalue_instr) 400070B3 where opcode=0110011, Func3=111, Func7=0100000 and the name of instruction is ANDN
+```
+assert dut_output == expected_mav_putvalue, error_message
+                    AssertionError: Value mismatch DUT = 0xa0000001 does not match MODEL = 0x1
+```
+
+## Test Scenario
+- Test inputs: mav_putvalue_src1 = 0x50000000, mav_putvalue_src2 = 0x5000000, mav_putvalue_src3 = 0x00000000, mav_putvalue_instr = 0x400070B3
+- Expected Output: 0x1
+- Observed Output in the DUT dut_output=0xa0000001
+
+## Verification Strategy
+imported random library and assigned random function to selectlines. Made two tests one is **test_mux(dut)** for inp0 to inp15 and another is **test_mux1(dut)** for inp16 to inp30.
