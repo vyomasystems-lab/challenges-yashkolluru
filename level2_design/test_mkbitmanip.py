@@ -77,7 +77,7 @@ def run_test1(dut):
     mav_putvalue_src1 = 0x50000000
     mav_putvalue_src2 = 0x5000000
     mav_putvalue_src3 = 0x00000000
-    mav_putvalue_instr = 0x61B01093
+    mav_putvalue_instr = 0x61A01093
 
     # expected output from the model
     expected_mav_putvalue = bitmanip(mav_putvalue_instr, mav_putvalue_src1, mav_putvalue_src2, mav_putvalue_src3)
