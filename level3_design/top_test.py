@@ -23,8 +23,10 @@ async def test_top1(dut):
     dut.rst.value = 0
     await FallingEdge(dut.clk)
     
-    dut.degrees.value=30
-    dut.actv.value=3
+    deg=280
+    A=0
+    dut.degrees.value=deg
+    dut.actv.value=A
     instr=hex(dut.data1.value)[2:]
     out=int(instr,16) #convert Hex  to int
     out=bin(out)[2:] #convert int to binary
