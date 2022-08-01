@@ -165,7 +165,7 @@ end
 	begin
 	  if(degrees_tmp1 >`INPUT_WIDTH'd90)
 	    begin
-	      quad <= 2'b11;
+	      quad <= 2'b00;
 	      degrees_tmp2 <= `INPUT_WIDTH'd180 - degrees_tmp1;
 	      end
  
