@@ -102,3 +102,5 @@ Updating the design and re-running the test makes the test. The updated code is 
 
 ![](https://github.com/vyomasystems-lab/challenges-yashkolluru/blob/master/Screenshot%20(88).png)
 
+## Verification Strategy
+imported random library and assigned random function to selectlines. Made two tests one is **test_mux(dut)** for inp0 to inp15 and another is **test_mux1(dut)** for inp16 to inp30.
