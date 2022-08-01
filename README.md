@@ -6,7 +6,7 @@ challenges-yashkolluru created by GitHub Classroom
 
 The verification environment is setup using [Vyoma's UpTickPro](https://vyomasystems.com) provided for the hackathon. The [CoCoTb](https://www.cocotb.org/) based Python test is developed as explained.
 
-# Level1_design1
+# Level1_design1 (Multiplexer Verification)
 
 Here the verification is done to MUX circuit to identify bugs. 
 The test drives inputs to the Design under test (mux module here) which takes 30 2-bit inputs *inp0 to inp30, 5-bit select lines *sel* and 2-bit otput *out*.
@@ -105,11 +105,11 @@ Updating the design and re-running the test makes the test. The updated code is 
 ## Verification Strategy
 imported random library and assigned random function to selectlines. Made two tests one is **test_mux(dut)** for inp0 to inp15 and another is **test_mux1(dut)** for inp16 to inp30.
 
-# Level1_design2
+# Level1_design2 (Sequence Detector Verification)
 Here the verification is done to sequence detector circuit (which detects 1011 sequence also repetition is allowed) to identify bugs. 
 The test drives inputs to the Design under test (seq_detect_1011 module here) which takes **clk, rst, inp_bit** as inputs and gives **seq_seen** as output.
 
-The values are assigned to the input ports clk and rst using
+The values are assigned to the input ports *clk* and *rst* using
 ```
 clock = Clock(dut.clk, 10, units="us")  # Create a 10us period clock on port clk
 cocotb.start_soon(clock.start())        # Start the clock
@@ -120,7 +120,7 @@ await FallingEdge(dut.clk)
 dut.reset.value = 0
 await FallingEdge(dut.clk)
 ```
-the values are assigned to inp_bit at regular intervals according to sequence which is considered  like for example sequence "10"
+the values are assigned to *inp_bit* at regular intervals according to sequence which is considered  like for example sequence "10"
 ```
 dut.inp_bit.value=1
 await FallingEdge(dut.clk)
@@ -203,3 +203,13 @@ Updating the design and re-running the test makes the test. The updated code is 
 ## Verification Strategy
 Imported Path library from **pathlib**, Clock library from **cocotb.clock** and RisingEdge, FallingEdge libraries from **cocotb.triggers**. After this a clock signal was generated of period 10us. Then according the desired sequence inuts are assigend to inp_bit in regular intervals and performed all other required tests. 
 
+#Level2_design (Bitmanipulation Co-Processor Verification)
+Here the verification is done to Bitmanipulation Co-Processor circuit to identify bugs in it. The test drives inputs to the Design under test (mkbitmanip module here) which takes **mav_putvalue_instr, mav_putvalue_src1, mav_putvalue_src2, mav_putvalue_src3** as 32-bit inputs and gives **mav_putvalue** as 33-bit output where LSB is for validation.
+
+The values are assigned to the input ports *mav_putvalue_src1, mav_putvalue_src2, mav_putvalue_src* using
+```
+ mav_putvalue_src1 = 0x50000000
+ mav_putvalue_src2 = 0x50000000
+ mav_putvalue_src3 = 0x00000000
+ ```
+The values are assigned to *mav_putvalue_instr* are using the 32-bit instruction values, used in if else statements of **model_mkbitmanip.py** file
