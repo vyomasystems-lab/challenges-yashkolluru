@@ -280,5 +280,8 @@ Based on the above test input and analysing the design, we see the following
 	      degrees_tmp2 <= `INPUT_WIDTH'd180 - degrees_tmp1;
 	      end
 ```
+
 ## Design Fix
-Updating the design and re-running the test makes the test. The updated code is commited as **seq_detect_modified.v** file with no bugs.
+Updating the design and re-running the test makes the test. The updated code is commited as **top_modified.v** file with no bugs.
+
+![](https://github.com/vyomasystems-lab/challenges-yashkolluru/blob/master/Screenshot%20(89).png)
