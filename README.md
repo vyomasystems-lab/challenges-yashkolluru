@@ -6,7 +6,7 @@ challenges-yashkolluru created by GitHub Classroom
 
 The verification environment is setup using [Vyoma's UpTickPro](https://vyomasystems.com) provided for the hackathon. The [CoCoTb](https://www.cocotb.org/) based Python test is developed as explained.
 
-## Level1_design
+# Level1_design1
 
 Here the verification is done to MUX circuit to identify bugs. 
 The test drives inputs to the Design under test (mux module here) which takes 30 2-bit inputs *inp0 to inp30, 5-bit select lines *sel* and 2-bit otput *out*.
@@ -104,3 +104,10 @@ Updating the design and re-running the test makes the test. The updated code is 
 
 ## Verification Strategy
 imported random library and assigned random function to selectlines. Made two tests one is **test_mux(dut)** for inp0 to inp15 and another is **test_mux1(dut)** for inp16 to inp30.
+
+# Level1_design2
+Here the verification is done to MUX circuit to identify bugs. 
+The test drives inputs to the Design under test (mux module here) which takes 30 2-bit inputs *inp0 to inp30, 5-bit select lines *sel* and 2-bit otput *out*.
+
+The values are assigned to the input port using 
+```
