@@ -284,4 +284,4 @@ Based on the above test input and analysing the design, we see the following
 ## Design Fix
 Updating the design and re-running the test makes the test. The updated code is commited as **top_modified.v** file with no bugs.
 
-![](https://github.com/vyomasystems-lab/challenges-yashkolluru/blob/master/Screenshot%20(89).png)
+![](https://github.com/vyomasystems-lab/challenges-yashkolluru/blob/master/Screenshot%20(91).png)
