@@ -54,24 +54,24 @@ In=[0,1,2,3,0,1,2,3,0,1,2,3,0,1,2,3,0,1,2,3,0,1,2,3,0,1,2,3,0,1,2]
 The assert statement is used for comparing the MUX's outut to the expected value
 
 The following errors is seen:
-i)when S=30 was assigned by random function
+i)when S=30 was assigned by random function in **test_mux1(dut)**
 ```
  assert dut.out.value == In[S], "Mux result is incorrect:model_out={Out}, expected output={EXP} at sel={SEL}".format(
  AssertionError: Mux result is incorrect:model_out=0, expected output=2 at sel=30
 ```
-ii)when S=13 was assigned by random function
+ii)when S=13 was assigned by random function in **test_mux(dut)**
 ```
  assert dut.out.value == In[S], "Mux result is incorrect:model_out={Out}, expected output={EXP} at sel={SEL}".format(
   AssertionError: Mux result is incorrect:model_out=0, expected output=1 at sel=13
 ```
 
 ## Test Scenario
-i)when S=13 was assigned by random function
+i)when S=13 was assigned by random function in **test_mux(dut)**
 -Test Inputs: inp0=0.... inp12=0 inp13=1 .....inp30=2
 -Expected Output: out=1
 -Observed Output in the DUT dut.out=0
 
-ii)when S=30 was assigned by random function
+ii)when S=30 was assigned by random function in **test_mux1(dut)**
 -Test Inputs: inp0=0.... inp12=0 inp13=1 .....inp30=2
 -Expected Output: out=2
 -Observed Output in the DUT dut.out=0
