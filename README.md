@@ -229,4 +229,6 @@ assert dut_output == expected_mav_putvalue, error_message
 - Observed Output in the DUT dut_output=0xa0000001
 
 ## Verification Strategy
-imported random library and assigned random function to selectlines. Made two tests one is **test_mux(dut)** for inp0 to inp15 and another is **test_mux1(dut)** for inp16 to inp30.
+Imported coroutine library from **cocotb.decorators**, Timer and RisingEdge libraries from **cocotb.triggers**, TestFailure from **cocotb.result** and imported Clock from **cocotb.clock** and then by changing the values in *mav_putvalue_instr* tested the given circuit.
+
+
