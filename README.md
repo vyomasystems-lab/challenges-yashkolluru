@@ -147,3 +147,50 @@ iii) for sequence 101011
 assert dut.seq_seen==1,"Sequence detected by logic but not by DUT: Model_out={out} model_state={S} Expected_out={out1} Expected_state={S1}".format(
 AssertionError: Sequence detected by logic by not by DUT: Model_out=0 model_state=0 Expected_out=1 Expected_state=4
 ```
+
+## Test Scenario 
+- Test inputs: each bit in the sequence 1011011 is given to inp_bit at regular intervals
+- Expected Output: seq_seen=1
+- Observed Output in the DUT dut.seq_seen=0
+- Expected state: current_state=4
+- Observed State in the DUT dut.current_state=0
+## Test Scenario
+- Test inputs: each bit in the sequence 11011 is given to inp_bit at regular intervals
+- Expected Output: seq_seen=1
+- Observed Output in the DUT dut.seq_seen=0
+- Expected state: current_state=4
+- Observed State in the DUT dut.current_state=0
+## Test Scenario
+- Test inputs: each bit in the sequence 101011 is given to inp_bit at regular intervals
+- Expected Output: seq_seen=1
+- Observed Output in the DUT dut.seq_seen=0
+- Expected state: current_state=4
+- Observed State in the DUT dut.current_state=0
+
+## Design Bug
+Based on the above test input and analysing the design, we see the following
+i) 
+```
+SEQ_1011:
+      begin
+        next_state = IDLE;   ====> BUG
+      end
+```
+ii) 
+```
+SEQ_1:
+      begin
+        if(inp_bit == 1)
+          next_state = IDLE;   ====> BUG
+        else
+          next_state = SEQ_10;
+```
+iii) 
+```
+SEQ_101:
+      begin
+        if(inp_bit == 1)
+          next_state = SEQ_1011;
+        else
+          next_state = IDLE;   ====> BUG
+```
