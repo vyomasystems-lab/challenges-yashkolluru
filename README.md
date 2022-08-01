@@ -232,3 +232,18 @@ assert dut_output == expected_mav_putvalue, error_message
 Imported coroutine library from **cocotb.decorators**, Timer and RisingEdge libraries from **cocotb.triggers**, TestFailure from **cocotb.result** and imported Clock from **cocotb.clock** and then by changing the values in *mav_putvalue_instr* tested the given circuit.
 
 
+# Level3_design (Trigonometric Function Implementer Circuit)
+Here verification is done to Trigonometric Function Implementer Circuit to identify bugs in it. The test drives inputs to the Design under test (top_buggy module here) which takes inputs of 32-bit **degrees**, **clk**,**rst** and a 3-bit **actv** and gives a 64-bit **data1** as output which is in **IEEE 754** standard.
+
+The values are assigned to the input ports *clk* and *rst* using
+```
+clock = Clock(dut.clk, 10, units="us")  # Create a 10us period clock on port clk
+cocotb.start_soon(clock.start())        # Start the clock
+
+# reset
+dut.reset.value = 1
+await FallingEdge(dut.clk)  
+dut.reset.value = 0
+await FallingEdge(dut.clk)
+```
+The value assigned to remaining input ports are
